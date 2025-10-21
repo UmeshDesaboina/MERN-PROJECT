@@ -7,7 +7,7 @@ const app = express();
 
 connectDB();
 
-app.use(cors({ origin: process.env.FRONTEND_URL || 'https://clothstoree.netlify.app/', credentials: true }));
+app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:3000', credentials: true }));
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
