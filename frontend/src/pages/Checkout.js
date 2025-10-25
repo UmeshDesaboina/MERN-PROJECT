@@ -101,19 +101,20 @@ const Checkout = () => {
   const total = subtotal;
 
   return (
-    <div className="container">
+    <div style={{ background: '#000', minHeight: '100vh', color: '#fff' }}>
+      <div className="container">
       <div style={{ marginBottom: '32px' }}>
-        <h1 style={{ fontSize: '32px', fontWeight: '700', color: '#1e293b', marginBottom: '8px' }}>Checkout</h1>
-        <p style={{ color: '#64748b' }}>Review your order and complete your purchase</p>
+        <h1 style={{ fontSize: '32px', fontWeight: '700', color: '#ffffff', marginBottom: '8px' }}>Checkout</h1>
+        <p style={{ color: '#cbd5e1' }}>Review your order and complete your purchase</p>
       </div>
 
       {error ? (
-        <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
+        <div className="card" style={{ textAlign: 'center', padding: '40px', background: '#0b0b0b', border: '1px solid #333', color: '#fff' }}>
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>🛒</div>
-          <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>
+          <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#ffffff', marginBottom: '8px' }}>
             {error}
           </h3>
-          <p style={{ color: '#64748b', marginBottom: '20px' }}>
+          <p style={{ color: '#cbd5e1', marginBottom: '20px' }}>
             Please login to proceed with checkout
           </p>
           <Link to="/login" className="btn-primary">
@@ -121,12 +122,12 @@ const Checkout = () => {
           </Link>
         </div>
       ) : cart.items?.length === 0 ? (
-        <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
+        <div className="card" style={{ textAlign: 'center', padding: '40px', background: '#0b0b0b', border: '1px solid #333', color: '#fff' }}>
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>🛒</div>
-          <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>
+          <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#ffffff', marginBottom: '8px' }}>
             Your cart is empty
           </h3>
-          <p style={{ color: '#64748b', marginBottom: '20px' }}>
+          <p style={{ color: '#cbd5e1', marginBottom: '20px' }}>
             Add some items to proceed with checkout
           </p>
           <Link to="/products" className="btn-primary">
@@ -138,13 +139,13 @@ const Checkout = () => {
           {/* Order Details */}
           <div>
             {/* Shipping Address */}
-            <div className="card" style={{ padding: '24px', marginBottom: '24px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: '600', color: '#1e293b', marginBottom: '20px' }}>
+            <div className="card" style={{ padding: '24px', marginBottom: '24px', background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: '600', color: '#ffffff', marginBottom: '20px' }}>
                 Shipping Address
               </h2>
               <div style={{ display: 'grid', gap: '16px' }}>
                 <div>
-                  <label className="form-label">Street Address</label>
+                  <label className="form-label" style={{ color: '#ffffff' }}>Street Address</label>
                   <input
                     type="text"
                     value={shippingAddress.street}
@@ -155,7 +156,7 @@ const Checkout = () => {
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <div>
-                    <label className="form-label">City</label>
+                    <label className="form-label" style={{ color: '#ffffff' }}>City</label>
                     <input
                       type="text"
                       value={shippingAddress.city}
@@ -165,7 +166,7 @@ const Checkout = () => {
                     />
                   </div>
                   <div>
-                    <label className="form-label">State</label>
+                    <label className="form-label" style={{ color: '#ffffff' }}>State</label>
                     <input
                       type="text"
                       value={shippingAddress.state}
@@ -177,7 +178,7 @@ const Checkout = () => {
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <div>
-                    <label className="form-label">ZIP Code</label>
+                    <label className="form-label" style={{ color: '#ffffff' }}>ZIP Code</label>
                     <input
                       type="text"
                       value={shippingAddress.zipCode}
@@ -187,7 +188,7 @@ const Checkout = () => {
                     />
                   </div>
                   <div>
-                    <label className="form-label">Country</label>
+                    <label className="form-label" style={{ color: '#ffffff' }}>Country</label>
                     <input
                       type="text"
                       value={shippingAddress.country}
@@ -201,11 +202,11 @@ const Checkout = () => {
             </div>
 
             {/* Payment Method (Online disabled) */}
-            <div className="card" style={{ padding: '24px', marginBottom: '24px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: '600', color: '#1e293b', marginBottom: '12px' }}>
+            <div className="card" style={{ padding: '24px', marginBottom: '24px', background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: '600', color: '#ffffff', marginBottom: '12px' }}>
                 Payment Method
               </h2>
-              <div style={{ display: 'flex', gap: '12px', alignItems: 'center', color: '#1e293b' }}>
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'center', color: '#e5e7eb' }}>
                 <input type="radio" checked readOnly style={{ marginRight: 8 }} />
                 Cash on Delivery
               </div>
@@ -215,8 +216,8 @@ const Checkout = () => {
 
           {/* Order Summary */}
           <div>
-            <div className="card" style={{ padding: '24px', position: 'sticky', top: '24px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: '600', color: '#1e293b', marginBottom: '20px' }}>
+            <div className="card" style={{ padding: '24px', position: 'sticky', top: '24px', background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
+              <h2 style={{ fontSize: '20px', fontWeight: '600', color: '#ffffff', marginBottom: '20px' }}>
                 Order Summary
               </h2>
               
@@ -230,14 +231,14 @@ const Checkout = () => {
                     borderBottom: '1px solid #e2e8f0'
                   }}>
                     <div>
-                      <p style={{ fontSize: '14px', fontWeight: '500', color: '#1e293b', margin: 0 }}>
+                      <p style={{ fontSize: '14px', fontWeight: '500', color: '#ffffff', margin: 0 }}>
                         {item.product?.name}
                       </p>
-                      <p style={{ fontSize: '12px', color: '#64748b', margin: 0 }}>
+                      <p style={{ fontSize: '12px', color: '#cbd5e1', margin: 0 }}>
                         Qty: {item.qty}
                       </p>
                     </div>
-                    <span style={{ fontSize: '14px', fontWeight: '600', color: '#1e293b' }}>
+                    <span style={{ fontSize: '14px', fontWeight: '600', color: '#ffffff' }}>
                       ${((item.product?.price || 0) * item.qty).toFixed(2)}
                     </span>
                   </div>
@@ -246,21 +247,21 @@ const Checkout = () => {
 
               <div style={{ marginBottom: '20px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                  <span style={{ color: '#64748b' }}>Subtotal:</span>
-                  <span style={{ color: '#1e293b' }}>${subtotal.toFixed(2)}</span>
+                  <span style={{ color: '#cbd5e1' }}>Subtotal:</span>
+                  <span style={{ color: '#ffffff' }}>${subtotal.toFixed(2)}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                  <span style={{ color: '#64748b' }}>Shipping:</span>
-                  <span style={{ color: '#1e293b' }}>Free</span>
+                  <span style={{ color: '#cbd5e1' }}>Shipping:</span>
+                  <span style={{ color: '#ffffff' }}>Free</span>
                 </div>
                 <div style={{ 
                   display: 'flex', 
                   justifyContent: 'space-between', 
                   paddingTop: '12px',
-                  borderTop: '2px solid #e2e8f0',
+                  borderTop: '2px solid #333',
                   fontSize: '18px',
                   fontWeight: '700',
-                  color: '#1e293b'
+                  color: '#ffffff'
                 }}>
                   <span>Total:</span>
                   <span>${total.toFixed(2)}</span>
@@ -285,7 +286,7 @@ const Checkout = () => {
                 display: 'block', 
                 textAlign: 'center', 
                 marginTop: '12px',
-                color: '#64748b',
+                color: '#cbd5e1',
                 textDecoration: 'none',
                 fontSize: '14px'
               }}>
@@ -295,6 +296,7 @@ const Checkout = () => {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 };

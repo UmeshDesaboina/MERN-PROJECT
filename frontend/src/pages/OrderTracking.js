@@ -36,19 +36,20 @@ const OrderTracking = () => {
   const shipUrl = order.courierUrl || order.tracking?.url || '';
 
   return (
-    <div className="container">
+    <div style={{ background: '#000', minHeight: '100vh', color: '#fff' }}>
+      <div className="container">
       <div style={{ marginBottom: '24px' }}>
-        <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#1e293b' }}>Order Tracking</h1>
-        <p style={{ color: '#64748b' }}>Order #{order.orderId || (order._id || '').slice(-8)}</p>
+        <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#ffffff' }}>Order Tracking</h1>
+        <p style={{ color: '#cbd5e1' }}>Order #{order.orderId || (order._id || '').slice(-8)}</p>
       </div>
 
-      <div className="card" style={{ padding: 24, marginBottom: 24 }}>
+      <div className="card" style={{ padding: 24, marginBottom: 24, background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <p style={{ margin: 0, color: '#64748b' }}>Current Status</p>
-            <h3 style={{ margin: 0, color: '#1e293b' }}>{statusLabel}</h3>
+            <p style={{ margin: 0, color: '#cbd5e1' }}>Current Status</p>
+            <h3 style={{ margin: 0, color: '#ffffff' }}>{statusLabel}</h3>
           </div>
-          <div style={{ fontWeight: 700, color: '#1e293b' }}>${(order.total || 0).toFixed(2)}</div>
+          <div style={{ fontWeight: 700, color: '#ffffff' }}>${(order.total || 0).toFixed(2)}</div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 16 }}>
           {['Order Placed','Shipped','Delivered'].map((label, idx) => {
@@ -65,28 +66,29 @@ const OrderTracking = () => {
       </div>
 
       {(shipCourier || shipTracking || order.status === 'Shipped' || order.status === 'Delivered') && (
-        <div className="card" style={{ padding: 24, marginBottom: 24 }}>
-          <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1e293b', marginBottom: 12 }}>Shipping Details</h3>
-          <p style={{ margin: 0, color: '#1e293b' }}>Courier: <strong>{shipCourier || '—'}</strong></p>
-          <p style={{ margin: '4px 0 0', color: '#1e293b' }}>Tracking ID: <strong>{shipTracking || '—'}</strong></p>
+        <div className="card" style={{ padding: 24, marginBottom: 24, background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
+          <h3 style={{ fontSize: 16, fontWeight: 600, color: '#ffffff', marginBottom: 12 }}>Shipping Details</h3>
+          <p style={{ margin: 0, color: '#e5e7eb' }}>Courier: <strong>{shipCourier || '—'}</strong></p>
+          <p style={{ margin: '4px 0 0', color: '#e5e7eb' }}>Tracking ID: <strong>{shipTracking || '—'}</strong></p>
           {(shipUrl || shipTracking) && (
             <p style={{ marginTop: 8 }}>
-              <a href={shipUrl || (function(){ const n=(shipCourier||'').toLowerCase(); const id=encodeURIComponent(shipTracking||''); if(!id) return '#'; if(n.includes('bluedart')) return `https://www.bluedart.com/track?track=${id}`; if(n.includes('dtdc')) return `https://www.dtdc.in/tracking/tracking_results.asp?Ttype=awb_no&strCnno=${id}`; if(n.includes('delhivery')) return `https://www.delhivery.com/track/package/${id}`; if(n.includes('ekart')) return `https://ekartlogistics.com/track/${id}`; if(n.includes('xpressbees')) return `https://www.xpressbees.com/track-shipment?isawb=Yes&trackid=${id}`; if(n.includes('india post')||n.includes('speed post')) return `https://www.indiapost.gov.in/_layouts/15/dop.portal.tracking/trackconsignment.aspx`; return '#'; })()} target="_blank" rel="noreferrer" className="btn-secondary">Track Package</a>
+              <a href={shipUrl || (function(){ const n=(shipCourier||'').toLowerCase(); const id=encodeURIComponent(shipTracking||''); if(!id) return '#'; if(n.includes('bluedart')) return `https://www.bluedart.com/track?track=${id}`; if(n.includes('dtdc')) return `https://www.dtdc.in/tracking/tracking_results.asp?Ttype=awb_no&strCnno=${id}`; if(n.includes('delhivery')) return `https://www.delhivery.com/track/package/${id}`; if(n.includes('ekart')) return `https://ekartlogistics.com/track/${id}`; if(n.includes('xpressbees')) return `https://www.xpressbees.com/track-shipment?isawb=Yes&trackid=${id}`; if(n.includes('india post')||n.includes('speed post')) return `https://www.indiapost.gov.in/_layouts/15/dop.portal.tracking/trackconsignment.aspx`; return '#'; })()} target="_blank" rel="noreferrer" className="btn-primary">Track Package</a>
             </p>
           )}
         </div>
       )}
 
 
-      <div className="card" style={{ padding: 24 }}>
-        <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1e293b', marginBottom: 12 }}>Items</h3>
+      <div className="card" style={{ padding: 24, background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
+        <h3 style={{ fontSize: 16, fontWeight: 600, color: '#ffffff', marginBottom: 12 }}>Items</h3>
         {(order.items || []).map((it) => (
-          <div key={(it.product?._id || Math.random()) + String(it.qty)} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #e2e8f0' }}>
-            <div style={{ color: '#1e293b' }}>{it.product?.name || 'Product'}</div>
-            <div style={{ color: '#64748b' }}>Qty: {it.qty}</div>
-            <div style={{ color: '#1e293b', fontWeight: 600 }}>${((it.price || it.product?.price || 0) * (it.qty || 0)).toFixed(2)}</div>
+          <div key={(it.product?._id || Math.random()) + String(it.qty)} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #333' }}>
+            <div style={{ color: '#e5e7eb' }}>{it.product?.name || 'Product'}</div>
+            <div style={{ color: '#cbd5e1' }}>Qty: {it.qty}</div>
+            <div style={{ color: '#ffffff', fontWeight: 600 }}>${((it.price || it.product?.price || 0) * (it.qty || 0)).toFixed(2)}</div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

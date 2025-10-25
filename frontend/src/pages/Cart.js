@@ -72,19 +72,20 @@ const Cart = () => {
   const total = cart.items?.reduce((acc, item) => acc + (item.product?.price || 0) * item.qty, 0) || 0;
 
   return (
-    <div className="container">
+    <div style={{ background: '#000', minHeight: '100vh', color: '#fff' }}>
+      <div className="container">
       <div style={{ marginBottom: '32px' }}>
-        <h1 style={{ fontSize: '32px', fontWeight: '700', color: '#1e293b', marginBottom: '8px' }}>Shopping Cart</h1>
-        <p style={{ color: '#64748b' }}>Review your items before checkout</p>
+        <h1 style={{ fontSize: '32px', fontWeight: '700', color: '#ffffff', marginBottom: '8px' }}>Shopping Cart</h1>
+        <p style={{ color: '#cbd5e1' }}>Review your items before checkout</p>
       </div>
 
       {error ? (
-        <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
+        <div className="card" style={{ textAlign: 'center', padding: '40px', background: '#0b0b0b', border: '1px solid #333', color: '#fff' }}>
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>🛒</div>
-          <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>
+          <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#ffffff', marginBottom: '8px' }}>
             {error}
           </h3>
-          <p style={{ color: '#64748b', marginBottom: '20px' }}>
+          <p style={{ color: '#cbd5e1', marginBottom: '20px' }}>
             Please login to view your cart
           </p>
           <Link to="/login" className="btn-primary">
@@ -92,12 +93,12 @@ const Cart = () => {
           </Link>
         </div>
       ) : cart.items?.length === 0 ? (
-        <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
+        <div className="card" style={{ textAlign: 'center', padding: '40px', background: '#0b0b0b', border: '1px solid #333', color: '#fff' }}>
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>🛒</div>
-          <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>
+          <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#ffffff', marginBottom: '8px' }}>
             Your cart is empty
           </h3>
-          <p style={{ color: '#64748b', marginBottom: '20px' }}>
+          <p style={{ color: '#cbd5e1', marginBottom: '20px' }}>
             Add some items to get started
           </p>
           <Link to="/products" className="btn-primary">
@@ -112,7 +113,10 @@ const Cart = () => {
                 display: 'flex', 
                 alignItems: 'center', 
                 padding: '20px',
-                gap: '20px'
+                gap: '20px',
+                background: '#0b0b0b',
+                border: '1px solid #333',
+                color: '#e5e7eb'
               }}>
                 <img 
                   src={item.product?.image || '/api/placeholder/100/100'} 
@@ -125,13 +129,13 @@ const Cart = () => {
                   }} 
                 />
                 <div style={{ flex: 1 }}>
-                  <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#ffffff', marginBottom: '8px' }}>
                     {item.product?.name}
                   </h3>
-                  <p style={{ color: '#64748b', fontSize: '14px', marginBottom: '8px' }}>
+                  <p style={{ color: '#cbd5e1', fontSize: '14px', marginBottom: '8px' }}>
                     {item.product?.description}
                   </p>
-                  <p style={{ fontSize: '16px', fontWeight: '600', color: '#1e293b' }}>
+                  <p style={{ fontSize: '16px', fontWeight: '600', color: '#ffffff' }}>
                     ${item.product?.price || 0}
                   </p>
                 </div>
@@ -181,7 +185,7 @@ const Cart = () => {
                   </button>
                 </div>
                 <div style={{ textAlign: 'right', minWidth: '120px' }}>
-                  <p style={{ fontSize: '18px', fontWeight: '700', color: '#1e293b', marginBottom: '8px' }}>
+                  <p style={{ fontSize: '18px', fontWeight: '700', color: '#ffffff', marginBottom: '8px' }}>
                     ${((item.product?.price || 0) * item.qty).toFixed(2)}
                   </p>
                   <button 
@@ -203,10 +207,10 @@ const Cart = () => {
             ))}
           </div>
 
-          <div className="card" style={{ padding: '24px' }}>
+          <div className="card" style={{ padding: '24px', background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#1e293b' }}>Order Summary</h3>
-              <span style={{ fontSize: '24px', fontWeight: '700', color: '#1e293b' }}>
+              <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#ffffff' }}>Order Summary</h3>
+              <span style={{ fontSize: '24px', fontWeight: '700', color: '#ffffff' }}>
                 ${total.toFixed(2)}
               </span>
             </div>
@@ -223,6 +227,7 @@ const Cart = () => {
           </div>
         </>
       )}
+      </div>
     </div>
   );
 };

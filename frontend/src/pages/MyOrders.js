@@ -44,18 +44,19 @@ const MyOrders = () => {
   if (error) return <ErrorMessage msg={error} />;
 
   return (
-    <div className="container">
+    <div style={{ background: '#000', minHeight: '100vh', color: '#fff' }}>
+      <div className="container">
       <div style={{ marginBottom: '24px' }}>
-        <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#1e293b' }}>My Orders</h1>
-        <p style={{ color: '#64748b' }}>Track the status of your orders and view details</p>
+        <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#ffffff' }}>My Orders</h1>
+        <p style={{ color: '#cbd5e1' }}>Track the status of your orders and view details</p>
       </div>
 
-      <div className="card">
+      <div className="card" style={{ background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
         {orders.length === 0 ? (
           <div style={{ textAlign: 'center', padding: 40 }}>
             <div style={{ fontSize: 48, marginBottom: 16 }}>📦</div>
-            <h3 style={{ fontSize: 20, fontWeight: 600, color: '#1e293b', marginBottom: 8 }}>You haven't placed any orders yet</h3>
-            <p style={{ color: '#64748b', marginBottom: 20 }}>Browse products and place your first order</p>
+            <h3 style={{ fontSize: 20, fontWeight: 600, color: '#ffffff', marginBottom: 8 }}>You haven't placed any orders yet</h3>
+            <p style={{ color: '#cbd5e1', marginBottom: 20 }}>Browse products and place your first order</p>
             <Link to="/products" className="btn-primary">Shop Now</Link>
           </div>
         ) : (
@@ -78,7 +79,7 @@ const MyOrders = () => {
                 }}>
                   <div>
                     <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-                      <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1e293b' }}>
+                      <h3 style={{ fontSize: 16, fontWeight: 600, color: '#ffffff' }}>
                         Order #{order.orderId || order._id.slice(-8)}
                       </h3>
                       <span style={{
@@ -104,10 +105,10 @@ const MyOrders = () => {
                         );
                       })}
                     </div>
-                    <p style={{ color: '#64748b', fontSize: 14 }}>
+                    <p style={{ color: '#cbd5e1', fontSize: 14 }}>
                       Placed on {new Date(order.createdAt).toLocaleString()}
                     </p>
-                    <p style={{ fontWeight: 600, color: '#1e293b' }}>${(order.total || 0).toFixed(2)}</p>
+                    <p style={{ fontWeight: 600, color: '#ffffff' }}>${(order.total || 0).toFixed(2)}</p>
                     {/* Shipping details always visible after Shipped */}
                     {(order.status === 'Shipped' || order.status === 'Delivered') && (
                       <p style={{ color: '#334155', fontSize: 12, marginTop: 4 }}>
@@ -129,6 +130,7 @@ const MyOrders = () => {
               );
             })
         )}
+      </div>
       </div>
     </div>
   );

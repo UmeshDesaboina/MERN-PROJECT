@@ -283,25 +283,18 @@ const AdminDashboard = () => {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="container-fluid">
+    <div style={{ background: '#000', minHeight: '100vh', color: '#fff' }}>
+      <div className="container-fluid">
       <div style={{ marginBottom: '32px' }}>
-        <h1 style={{ fontSize: '32px', fontWeight: '700', color: '#1e293b', marginBottom: '8px' }}>Admin Dashboard</h1>
-        <p style={{ color: '#64748b' }}>Manage your e-commerce store</p>
+        <h1 style={{ fontSize: '32px', fontWeight: '700', color: '#ffffff', marginBottom: '8px' }}>Admin Dashboard</h1>
+        <p style={{ color: '#cbd5e1' }}>Manage your e-commerce store</p>
         
         {/* Test Admin Creation Button */}
         <div style={{ marginTop: '16px' }}>
           <button 
             onClick={createTestAdmin}
-            style={{
-              padding: '8px 16px',
-              background: '#10b981',
-              color: 'white',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontSize: '14px',
-              fontWeight: '500'
-            }}
+            className="btn-secondary"
+            style={{ padding: '8px 16px' }}
           >
             Create Test Admin User
           </button>
@@ -312,39 +305,39 @@ const AdminDashboard = () => {
 
       {/* Stats Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '24px', marginBottom: '32px' }}>
-        <div className="card" style={{ textAlign: 'center' }}>
+        <div className="card" style={{ textAlign: 'center', background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
           <div style={{ fontSize: '32px', marginBottom: '8px' }}>👥</div>
-          <h3 style={{ fontSize: '24px', fontWeight: '700', color: '#1e293b', marginBottom: '4px' }}>{stats.totalUsers}</h3>
-          <p style={{ color: '#64748b' }}>Total Users</p>
+          <h3 style={{ fontSize: '24px', fontWeight: '700', color: '#ffffff', marginBottom: '4px' }}>{stats.totalUsers}</h3>
+          <p style={{ color: '#cbd5e1' }}>Total Users</p>
         </div>
-        <div className="card" style={{ textAlign: 'center' }}>
+        <div className="card" style={{ textAlign: 'center', background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
           <div style={{ fontSize: '32px', marginBottom: '8px' }}>📦</div>
-          <h3 style={{ fontSize: '24px', fontWeight: '700', color: '#1e293b', marginBottom: '4px' }}>{stats.totalOrders}</h3>
-          <p style={{ color: '#64748b' }}>Total Orders</p>
+          <h3 style={{ fontSize: '24px', fontWeight: '700', color: '#ffffff', marginBottom: '4px' }}>{stats.totalOrders}</h3>
+          <p style={{ color: '#cbd5e1' }}>Total Orders</p>
         </div>
-        <div className="card" style={{ textAlign: 'center' }}>
+        <div className="card" style={{ textAlign: 'center', background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
           <div style={{ fontSize: '32px', marginBottom: '8px' }}>🛍️</div>
-          <h3 style={{ fontSize: '24px', fontWeight: '700', color: '#1e293b', marginBottom: '4px' }}>{stats.totalProducts}</h3>
-          <p style={{ color: '#64748b' }}>Total Products</p>
+          <h3 style={{ fontSize: '24px', fontWeight: '700', color: '#ffffff', marginBottom: '4px' }}>{stats.totalProducts}</h3>
+          <p style={{ color: '#cbd5e1' }}>Total Products</p>
         </div>
-        <div className="card" style={{ textAlign: 'center' }}>
+        <div className="card" style={{ textAlign: 'center', background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
           <div style={{ fontSize: '32px', marginBottom: '8px' }}>💰</div>
-          <h3 style={{ fontSize: '24px', fontWeight: '700', color: '#1e293b', marginBottom: '4px' }}>${stats.totalRevenue}</h3>
-          <p style={{ color: '#64748b' }}>Total Revenue</p>
+          <h3 style={{ fontSize: '24px', fontWeight: '700', color: '#ffffff', marginBottom: '4px' }}>${stats.totalRevenue}</h3>
+          <p style={{ color: '#cbd5e1' }}>Total Revenue</p>
         </div>
       </div>
 
       {/* Tabs */}
-      <div style={{ display: 'flex', gap: '8px', marginBottom: '32px', borderBottom: '2px solid #e2e8f0' }}>
+      <div style={{ display: 'flex', gap: '8px', marginBottom: '32px', borderBottom: '2px solid #222' }}>
         {['overview', 'products', 'orders', 'users'].map(tab => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
             style={{
               padding: '12px 24px',
-              border: 'none',
-              background: activeTab === tab ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'transparent',
-              color: activeTab === tab ? 'white' : '#64748b',
+              border: '1px solid #222',
+              background: activeTab === tab ? '#111' : 'transparent',
+              color: activeTab === tab ? '#fff' : '#cbd5e1',
               borderRadius: '8px 8px 0 0',
               cursor: 'pointer',
               fontWeight: '500',
@@ -359,8 +352,8 @@ const AdminDashboard = () => {
       {/* Tab Content */}
       {activeTab === 'overview' && (
         <div>
-          <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#1e293b', marginBottom: '24px' }}>Recent Orders</h2>
-          <div className="card">
+          <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#ffffff', marginBottom: '24px' }}>Recent Orders</h2>
+          <div className="card" style={{ background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
             {orders.slice(0, 5).map(order => (
               <div key={order._id} style={{ 
                 display: 'flex', 
@@ -370,11 +363,11 @@ const AdminDashboard = () => {
                 borderBottom: '1px solid #e2e8f0' 
               }}>
                 <div>
-                  <p style={{ fontWeight: '600', color: '#1e293b' }}>Order #{order._id.slice(-6)}</p>
-                  <p style={{ color: '#64748b', fontSize: '14px' }}>{order.user?.name || 'Unknown User'}</p>
+                  <p style={{ fontWeight: '600', color: '#ffffff' }}>Order #{order._id.slice(-6)}</p>
+                  <p style={{ color: '#cbd5e1', fontSize: '14px' }}>{order.user?.name || 'Unknown User'}</p>
                 </div>
-                <div style={{ textAlign: 'right' }}>
-                  <p style={{ fontWeight: '600', color: '#1e293b' }}>${order.total}</p>
+                  <div style={{ textAlign: 'right' }}>
+                    <p style={{ fontWeight: '600', color: '#ffffff' }}>${order.total}</p>
                   <span style={{ 
                     padding: '4px 8px', 
                     borderRadius: '4px', 
@@ -394,7 +387,7 @@ const AdminDashboard = () => {
       {activeTab === 'products' && (
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-            <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#1e293b' }}>Products</h2>
+            <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#ffffff' }}>Products</h2>
             <button 
               onClick={() => setEditingProduct({ name: '', description: '', price: 0, stock: 0, category: 'Streetwear', image: '' })}
               className="btn-primary"
@@ -405,7 +398,7 @@ const AdminDashboard = () => {
           </div>
 
           {/* Add New Product Form */}
-          <div className="card" style={{ marginBottom: '24px' }}>
+          <div className="card" style={{ marginBottom: '24px', background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
             <h3 style={{ marginBottom: '16px' }}>Add New Product</h3>
             <form onSubmit={handleCreateProduct}>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px', marginBottom: '16px' }}>
@@ -510,7 +503,7 @@ const AdminDashboard = () => {
 
           {/* Edit Product Form */}
           {editingProduct && (
-            <div className="card" style={{ marginBottom: '24px' }}>
+            <div className="card" style={{ marginBottom: '24px', background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
               <h3 style={{ marginBottom: '16px' }}>Edit Product</h3>
               <form onSubmit={handleUpdateProduct}>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px', marginBottom: '16px' }}>
@@ -582,12 +575,12 @@ const AdminDashboard = () => {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px' }}>
             {products.map(product => (
-              <div key={product._id} className="card">
+              <div key={product._id} className="card" style={{ background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
                 <div style={{ marginBottom: '16px' }}>
-                  <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>{product.name}</h3>
-                  <p style={{ color: '#64748b', fontSize: '14px', marginBottom: '8px' }}>{product.description}</p>
+                  <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#ffffff', marginBottom: '8px' }}>{product.name}</h3>
+                  <p style={{ color: '#cbd5e1', fontSize: '14px', marginBottom: '8px' }}>{product.description}</p>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontWeight: '600', color: '#1e293b' }}>${product.price}</span>
+                    <span style={{ fontWeight: '600', color: '#ffffff' }}>${product.price}</span>
                     <span style={{ 
                       padding: '4px 8px', 
                       borderRadius: '4px', 
@@ -609,15 +602,8 @@ const AdminDashboard = () => {
                   </button>
                   <button 
                     onClick={() => handleDeleteProduct(product._id)}
-                    style={{ 
-                      flex: 1, 
-                      padding: '8px', 
-                      background: '#ef4444', 
-                      color: 'white', 
-                      border: 'none', 
-                      borderRadius: '6px',
-                      cursor: 'pointer'
-                    }}
+                    className="btn-secondary"
+                    style={{ flex: 1, padding: '8px' }}
                   >
                     Delete
                   </button>
@@ -631,15 +617,15 @@ const AdminDashboard = () => {
       {activeTab === 'orders' && (
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-            <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#1e293b' }}>Orders ({filteredOrders.length})</h2>
+            <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#ffffff' }}>Orders ({filteredOrders.length})</h2>
             <button onClick={exportOrdersCSV} className="btn-secondary">
               📊 Export CSV
             </button>
           </div>
 
           {/* Order Filters */}
-          <div className="card" style={{ marginBottom: '24px' }}>
-            <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1e293b', marginBottom: '16px' }}>Filters</h3>
+            <div className="card" style={{ marginBottom: '24px', background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
+              <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#ffffff', marginBottom: '16px' }}>Filters</h3>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
               <div>
                 <label className="form-label">Status</label>
@@ -693,18 +679,20 @@ const AdminDashboard = () => {
                 <div key={order._id} className="card" style={{ 
                   padding: '16px 20px', 
                   marginBottom: '16px',
-                  border: '1px solid #e2e8f0',
-                  borderRadius: '10px'
+                  border: '1px solid #333',
+                  borderRadius: '10px',
+                  background: '#0b0b0b',
+                  color: '#e5e7eb'
                 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '12px' }}>
                     <div>
-                      <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#1e293b' }}>
+                      <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#ffffff' }}>
                         Order #{order.orderId || order._id.slice(-6)}
                       </h3>
-                      <p style={{ color: '#64748b', fontSize: '14px' }}>Customer: {order.user?.name || 'Unknown'}</p>
-                      <p style={{ color: '#64748b', fontSize: '14px' }}>Total: ${order.total}</p>
+                      <p style={{ color: '#cbd5e1', fontSize: '14px' }}>Customer: {order.user?.name || 'Unknown'}</p>
+                      <p style={{ color: '#cbd5e1', fontSize: '14px' }}>Total: ${order.total}</p>
                       {order.paymentMethod === 'ONLINE' && (
-                        <p style={{ color: '#64748b', fontSize: '12px', marginTop: 4 }}>
+                        <p style={{ color: '#cbd5e1', fontSize: '12px', marginTop: 4 }}>
                           Payment: <strong>{order.paymentStatus || 'Pending'}</strong>{order.transactionId ? ` • TX: ${order.transactionId}` : ''}
                         </p>
                       )}
@@ -745,7 +733,7 @@ const AdminDashboard = () => {
                         <option value="Delivered">Delivered</option>
                         <option value="Cancelled">Cancelled</option>
                       </select>
-                      <p style={{ fontSize: '12px', color: '#64748b' }}>
+                      <p style={{ fontSize: '12px', color: '#cbd5e1' }}>
                         {new Date(order.createdAt).toLocaleDateString()}
                       </p>
                     </div>
@@ -870,15 +858,15 @@ const AdminDashboard = () => {
       {activeTab === 'users' && (
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-            <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#1e293b' }}>Users ({filteredUsers.length})</h2>
+            <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#ffffff' }}>Users ({filteredUsers.length})</h2>
             <button onClick={exportUsersCSV} className="btn-secondary">
               📊 Export CSV
             </button>
           </div>
 
           {/* User Filters */}
-          <div className="card" style={{ marginBottom: '24px' }}>
-            <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1e293b', marginBottom: '16px' }}>Filters</h3>
+          <div className="card" style={{ marginBottom: '24px', background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
+            <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#ffffff', marginBottom: '16px' }}>Filters</h3>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px' }}>
               <div>
                 <label className="form-label">Search Users</label>
@@ -893,14 +881,14 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          <div className="card">
+          <div className="card" style={{ background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
             {filteredUsers.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '40px' }}>
                 <div style={{ fontSize: '48px', marginBottom: '16px' }}>👥</div>
-                <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>
+                <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#ffffff', marginBottom: '8px' }}>
                   No users found
                 </h3>
-                <p style={{ color: '#64748b' }}>
+                <p style={{ color: '#cbd5e1' }}>
                   {filters.userSearch ? 'Try adjusting your search criteria' : 'No users registered yet'}
                 </p>
               </div>
@@ -914,9 +902,9 @@ const AdminDashboard = () => {
                   borderBottom: '1px solid #e2e8f0' 
                 }}>
                   <div>
-                    <p style={{ fontWeight: '600', color: '#1e293b' }}>{user.name}</p>
-                    <p style={{ color: '#64748b', fontSize: '14px' }}>{user.email}</p>
-                    <p style={{ color: '#64748b', fontSize: '12px' }}>
+                    <p style={{ fontWeight: '600', color: '#ffffff' }}>{user.name}</p>
+                    <p style={{ color: '#cbd5e1', fontSize: '14px' }}>{user.email}</p>
+                    <p style={{ color: '#cbd5e1', fontSize: '12px' }}>
                       Joined: {new Date(user.createdAt).toLocaleDateString()}
                     </p>
                   </div>
@@ -932,19 +920,13 @@ const AdminDashboard = () => {
                     </span>
                     <button 
                       onClick={() => toggleUserStatus(user._id, !user.isBlocked)}
-                      style={{ 
-                        padding: '6px 12px', 
-                        background: user.isBlocked ? '#22c55e' : '#ef4444', 
-                        color: 'white', 
-                        border: 'none', 
-                        borderRadius: '6px',
-                        cursor: 'pointer',
-                        fontSize: '12px'
-                      }}
+                      className="btn-secondary"
+                      style={{ padding: '6px 12px', fontSize: '12px' }}
                     >
                       {user.isBlocked ? 'Unblock' : 'Block'}
                     </button>
                     <button
+                      className="btn-secondary"
                       onClick={async () => {
                         if (window.confirm('Delete this user? This action cannot be undone.')) {
                           try {
@@ -964,15 +946,7 @@ const AdminDashboard = () => {
                           }
                         }
                       }}
-                      style={{
-                        padding: '6px 12px',
-                        background: '#991b1b',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '6px',
-                        cursor: 'pointer',
-                        fontSize: '12px'
-                      }}
+                      style={{ padding: '6px 12px', fontSize: '12px' }}
                       title="Delete user"
                     >
                       Delete
@@ -985,6 +959,7 @@ const AdminDashboard = () => {
         </div>
       )}
 
+      </div>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import api from '../Services/api';
 const ProductCard = ({ product }) => {
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [isAddingToWishlist, setIsAddingToWishlist] = useState(false);
+  const [qty, setQty] = useState(1);
 
   const handleAddToCart = async () => {
     const token = localStorage.getItem('token');
@@ -16,7 +17,7 @@ const ProductCard = ({ product }) => {
     
     try {
       setIsAddingToCart(true);
-      await api.post('/cartwishlist/cart', { productId: product._id, qty: 1 });
+      await api.post('/cartwishlist/cart', { productId: product._id, qty: qty });
       alert('Added to cart successfully!');
     } catch (err) {
       console.error('Failed to add to cart:', err);
@@ -51,7 +52,10 @@ const ProductCard = ({ product }) => {
       position: 'relative',
       overflow: 'hidden',
       transition: 'all 0.2s ease',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      background: '#0b0b0b',
+      border: '1px solid #333',
+      color: '#e5e7eb'
     }}>
       {/* Product Image */}
       <div style={{ 
@@ -133,7 +137,7 @@ const ProductCard = ({ product }) => {
         <h3 style={{ 
           fontSize: '16px', 
           fontWeight: '600', 
-          color: '#1e293b', 
+          color: '#ffffff', 
           marginBottom: '8px',
           lineHeight: '1.4',
           display: '-webkit-box',
@@ -145,7 +149,7 @@ const ProductCard = ({ product }) => {
         </h3>
         
         <p style={{ 
-          color: '#64748b', 
+          color: '#cbd5e1', 
           fontSize: '14px', 
           marginBottom: '12px',
           display: '-webkit-box',
@@ -168,7 +172,7 @@ const ProductCard = ({ product }) => {
             <span style={{ 
               fontSize: '20px', 
               fontWeight: '700', 
-              color: '#1e293b' 
+              color: '#ffffff' 
             }}>
               ${product.price}
             </span>
@@ -222,15 +226,29 @@ const ProductCard = ({ product }) => {
         </div>
 
         {/* Actions */}
-        <div style={{ display: 'flex', gap: '8px' }}>
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <button
+              aria-label="Decrease quantity"
+              onClick={() => setQty(prev => Math.max(1, prev - 1))}
+              style={{ width: 32, height: 32, borderRadius: 6, background: '#000', color: '#fff', border: '1px solid #222', fontSize: 18, lineHeight: 1 }}
+            >−</button>
+            <span style={{ minWidth: 28, textAlign: 'center', fontWeight: 600 }}>{qty}</span>
+            <button
+              aria-label="Increase quantity"
+              onClick={() => setQty(prev => Math.min(product.stock || 99, prev + 1))}
+              style={{ width: 32, height: 32, borderRadius: 6, background: '#000', color: '#fff', border: '1px solid #222', fontSize: 18, lineHeight: 1 }}
+            >+</button>
+          </div>
+
           <Link 
             to={`/product/${product._id}`}
             style={{ 
               flex: 1,
               padding: '10px 16px',
-              background: 'transparent',
-              color: '#667eea',
-              border: '2px solid #667eea',
+              background: '#000',
+              color: '#fff',
+              border: '1px solid #222',
               borderRadius: '6px',
               textDecoration: 'none',
               textAlign: 'center',
@@ -247,9 +265,9 @@ const ProductCard = ({ product }) => {
             style={{
               flex: 1,
               padding: '10px 16px',
-              background: product.stock <= 0 ? '#94a3b8' : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              color: 'white',
-              border: 'none',
+              background: product.stock <= 0 ? '#444' : '#000',
+              color: '#fff',
+              border: '1px solid #222',
               borderRadius: '6px',
               cursor: product.stock <= 0 ? 'not-allowed' : 'pointer',
               fontWeight: '500',

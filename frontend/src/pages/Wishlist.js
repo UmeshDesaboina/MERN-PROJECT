@@ -57,19 +57,20 @@ const Wishlist = () => {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="container">
+    <div style={{ background: '#000', minHeight: '100vh', color: '#fff' }}>
+      <div className="container">
       <div style={{ marginBottom: '32px' }}>
-        <h1 style={{ fontSize: '32px', fontWeight: '700', color: '#1e293b', marginBottom: '8px' }}>My Wishlist</h1>
-        <p style={{ color: '#64748b' }}>Save items you love for later</p>
+        <h1 style={{ fontSize: '32px', fontWeight: '700', color: '#ffffff', marginBottom: '8px' }}>My Wishlist</h1>
+        <p style={{ color: '#cbd5e1' }}>Save items you love for later</p>
       </div>
 
       {error ? (
-        <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
+        <div className="card" style={{ textAlign: 'center', padding: '40px', background: '#0b0b0b', border: '1px solid #333', color: '#fff' }}>
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>❤️</div>
-          <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>
+          <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#ffffff', marginBottom: '8px' }}>
             {error}
           </h3>
-          <p style={{ color: '#64748b', marginBottom: '20px' }}>
+          <p style={{ color: '#cbd5e1', marginBottom: '20px' }}>
             Please login to view your wishlist
           </p>
           <Link to="/login" className="btn-primary">
@@ -77,12 +78,12 @@ const Wishlist = () => {
           </Link>
         </div>
       ) : wishlist.products?.length === 0 ? (
-        <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
+        <div className="card" style={{ textAlign: 'center', padding: '40px', background: '#0b0b0b', border: '1px solid #333', color: '#fff' }}>
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>❤️</div>
-          <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>
+          <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#ffffff', marginBottom: '8px' }}>
             Your wishlist is empty
           </h3>
-          <p style={{ color: '#64748b', marginBottom: '20px' }}>
+          <p style={{ color: '#cbd5e1', marginBottom: '20px' }}>
             Add items you love to your wishlist
           </p>
           <Link to="/products" className="btn-primary">
@@ -91,7 +92,7 @@ const Wishlist = () => {
         </div>
       ) : (
         <>
-          <div className="products-grid">
+          <div className="products-grid" style={{ color: '#fff' }}>
             {wishlist.products.map(product => (
               <div key={product._id} style={{ position: 'relative' }}>
                 <ProductCard product={product} />
@@ -122,11 +123,11 @@ const Wishlist = () => {
             ))}
           </div>
 
-          <div className="card" style={{ padding: '24px', textAlign: 'center' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#1e293b', marginBottom: '12px' }}>
+          <div className="card" style={{ padding: '24px', textAlign: 'center', background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
+            <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#ffffff', marginBottom: '12px' }}>
               Found {wishlist.products?.length} item{wishlist.products?.length !== 1 ? 's' : ''} in your wishlist
             </h3>
-            <p style={{ color: '#64748b', marginBottom: '20px' }}>
+            <p style={{ color: '#cbd5e1', marginBottom: '20px' }}>
               Keep adding items you love or start shopping
             </p>
             <Link to="/products" className="btn-primary">
@@ -135,6 +136,7 @@ const Wishlist = () => {
           </div>
         </>
       )}
+      </div>
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import localLogo from '../assets/logo.svg';
+const LOGO_URL = 'https://iili.io/KrEPWoF.png';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -23,50 +25,38 @@ const ForgotPassword = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background: '#000',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       padding: '20px'
     }}>
       <div style={{
-        background: 'white',
+        background: '#0b0b0b',
+        color: '#e5e7eb',
         borderRadius: '20px',
         padding: '40px',
-        boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+        boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
         width: '100%',
-        maxWidth: '400px'
+        maxWidth: '400px',
+        border: '1px solid #333'
       }}>
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <div style={{
-            width: '80px',
-            height: '80px',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            borderRadius: '50%',
-            margin: '0 auto 20px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '32px',
-            color: 'white',
-            boxShadow: '0 8px 20px rgba(102, 126, 234, 0.3)'
-          }}>
-            🔐
-          </div>
+          <img src={LOGO_URL} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = localLogo; }} alt="Fight Wisdom logo" style={{ width: '96px', height: '96px', objectFit: 'contain', display: 'block', margin: '0 auto 20px', background: '#0b0b0b', padding: '8px', borderRadius: '12px' }} />
           <h2 style={{
             fontSize: '28px',
             fontWeight: '700',
-            color: '#1e293b',
+            color: '#ffffff',
             marginBottom: '8px'
           }}>Forgot Password?</h2>
-          <p style={{ color: '#64748b', fontSize: '16px' }}>Enter your email to reset your password</p>
+          <p style={{ color: '#cbd5e1', fontSize: '16px' }}>Enter your email to reset your password</p>
         </div>
 
         {message && (
           <div style={{
             padding: '12px 16px',
-            background: message.includes('Token') ? '#dcfce7' : '#fecaca',
-            color: message.includes('Token') ? '#166534' : '#dc2626',
+            background: message.includes('Token') ? '#022c22' : '#3f1d1d',
+            color: message.includes('Token') ? '#a7f3d0' : '#fecaca',
             borderRadius: '8px',
             marginBottom: '20px',
             fontSize: '14px'
@@ -81,7 +71,7 @@ const ForgotPassword = () => {
               display: 'block',
               fontSize: '14px',
               fontWeight: '500',
-              color: '#1e293b',
+              color: '#ffffff',
               marginBottom: '8px'
             }}>
               Email Address
@@ -95,7 +85,9 @@ const ForgotPassword = () => {
                 width: '100%',
                 padding: '14px 16px',
                 borderRadius: '8px',
-                border: '2px solid #e2e8f0',
+                border: '1px solid #333',
+                background: '#111',
+                color: '#e5e7eb',
                 fontSize: '16px',
                 transition: 'all 0.2s ease'
               }}
@@ -106,26 +98,18 @@ const ForgotPassword = () => {
           <button
             type="submit"
             disabled={loading}
+            className="btn-primary"
             style={{
               width: '100%',
-              padding: '16px',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              color: 'white',
-              border: 'none',
-              borderRadius: '8px',
-              fontSize: '16px',
-              fontWeight: '600',
-              cursor: loading ? 'not-allowed' : 'pointer',
-              opacity: loading ? 0.7 : 1,
-              transition: 'all 0.2s ease'
+              padding: '16px'
             }}
           >
             {loading ? 'Sending...' : 'Send Reset Link'}
           </button>
 
           <div style={{ textAlign: 'center', marginTop: '24px', fontSize: '14px' }}>
-            <span style={{ color: '#64748b' }}>
-              Remember your password? <Link to="/login" style={{ color: '#667eea', fontWeight: '600', textDecoration: 'none' }}>Sign in</Link>
+            <span style={{ color: '#cbd5e1' }}>
+              Remember your password? <Link to="/login" style={{ color: '#fff', fontWeight: '600', textDecoration: 'none' }}>Sign in</Link>
             </span>
           </div>
         </form>

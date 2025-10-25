@@ -55,9 +55,14 @@ const Products = () => {
       }).toString();
       
       const res = await api.get(`/products?${queryParams}`);
-      
+      let list = res.data.products || [];
+      // Client-side fallback category filter to ensure only selected category shows
+      if (new URLSearchParams(location.search).get('category')) {
+        const cat = (new URLSearchParams(location.search).get('category') || '').toLowerCase();
+        list = list.filter(p => (p.category || '').toLowerCase() === cat);
+      }
       if (isMounted.current) {
-        setProducts(res.data.products || []);
+        setProducts(list);
         setTotalPages(res.data.totalPages || 1);
       }
       } catch (err) {
@@ -88,12 +93,13 @@ const Products = () => {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="container">
+    <div style={{ background: '#000', minHeight: '100vh', color: '#fff' }}>
+      <div className="container">
       <div style={{ marginBottom: '32px' }}>
-        <h1 style={{ fontSize: '32px', fontWeight: '700', color: '#1e293b', marginBottom: '8px' }}>
+        <h1 style={{ fontSize: '32px', fontWeight: '700', color: '#ffffff', marginBottom: '8px' }}>
           {filters.category ? `${filters.category} Products` : 'All Products'}
         </h1>
-        <p style={{ color: '#64748b' }}>
+        <p style={{ color: '#cbd5e1' }}>
           {products.length} products found
         </p>
       </div>
@@ -101,8 +107,8 @@ const Products = () => {
       {error && <ErrorMessage msg={error} />}
 
       {/* Filters */}
-      <div className="card" style={{ marginBottom: '32px' }}>
-        <h3 style={{ marginBottom: '20px', color: '#1e293b' }}>Filters</h3>
+      <div className="card" style={{ marginBottom: '32px', background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
+        <h3 style={{ marginBottom: '20px', color: '#ffffff' }}>Filters</h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '20px' }}>
           <div className="form-group">
             <label className="form-label">Sort By</label>
@@ -150,7 +156,7 @@ const Products = () => {
       </div>
 
       {/* Products Grid */}
-      {products.length > 0 ? (
+          {products.length > 0 ? (
         <>
           <div className="products-grid">
             {products.map(product => (
@@ -185,10 +191,10 @@ const Products = () => {
                       onClick={() => setPage(pageNum)}
                       style={{
                         padding: '8px 12px',
-                        border: 'none',
+                        border: '1px solid #222',
                         borderRadius: '6px',
-                        background: page === pageNum ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#f1f5f9',
-                        color: page === pageNum ? 'white' : '#64748b',
+                        background: page === pageNum ? '#333' : '#111',
+                        color: page === pageNum ? '#fff' : '#cbd5e1',
                         cursor: 'pointer',
                         fontWeight: '500'
                       }}
@@ -211,12 +217,12 @@ const Products = () => {
           )}
         </>
       ) : (
-        <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
+        <div className="card" style={{ textAlign: 'center', padding: '40px', background: '#0b0b0b', border: '1px solid #333', color: '#fff' }}>
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>🔍</div>
-          <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>
+          <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#ffffff', marginBottom: '8px' }}>
             No products found
           </h3>
-          <p style={{ color: '#64748b', marginBottom: '20px' }}>
+          <p style={{ color: '#cbd5e1', marginBottom: '20px' }}>
             Try adjusting your filters or search terms
           </p>
           <button onClick={clearFilters} className="btn-primary">
@@ -224,6 +230,7 @@ const Products = () => {
           </button>
         </div>
       )}
+      </div>
     </div>
   );
 };

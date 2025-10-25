@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../Services/api';
 import ErrorMessage from '../components/ErrorMessage';
+import localLogo from '../assets/logo.svg';
+const LOGO_URL = 'https://iili.io/KrEPWoF.png';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -43,7 +45,7 @@ const Register = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background: '#000',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -58,28 +60,14 @@ const Register = () => {
         maxWidth: '400px'
       }}>
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <div style={{
-            width: '80px',
-            height: '80px',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            borderRadius: '50%',
-            margin: '0 auto 20px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '32px',
-            color: 'white',
-            boxShadow: '0 8px 20px rgba(102, 126, 234, 0.3)'
-          }}>
-            🎉
-          </div>
+          <img src={LOGO_URL} onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = localLogo; }} alt="Fight Wisdom logo" style={{ width: '120px', height: '120px', objectFit: 'contain', display: 'block', margin: '0 auto 20px', background: '#0b0b0b', padding: '8px', borderRadius: '12px' }} />
           <h2 style={{
             fontSize: '28px',
             fontWeight: '700',
             color: '#1e293b',
             marginBottom: '8px'
           }}>Create your account</h2>
-          <p style={{ color: '#64748b', fontSize: '16px' }}>Join Fight Widom and start shopping</p>
+          <p style={{ color: '#64748b', fontSize: '16px' }}>Join Fight Wisdom and start shopping</p>
         </div>
         
         {error && <ErrorMessage msg={error} />}
@@ -134,7 +122,7 @@ const Register = () => {
             </label>
           </div>
           
-          <button type="submit" disabled={loading} className="btn-primary" style={{ fontSize: '16px', padding: '16px' }}>
+          <button type="submit" disabled={loading} className="btn-primary" style={{ fontSize: '16px', padding: '16px', background: '#000', color: '#fff' }}>
             {loading ? 'Creating Account...' : 'Create Account'}
           </button>
           

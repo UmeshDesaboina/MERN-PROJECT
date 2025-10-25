@@ -85,7 +85,8 @@ const ProductDetail = () => {
   if (!product) return null;
 
   return (
-    <div className="container">
+    <div style={{ background: '#000', minHeight: '100vh', color: '#fff' }}>
+      <div className="container">
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginBottom: '40px' }}>
         {/* Product Image */}
         <div>
@@ -107,7 +108,7 @@ const ProductDetail = () => {
           <h1 style={{ 
             fontSize: '32px', 
             fontWeight: '700', 
-            color: '#1e293b', 
+            color: '#ffffff', 
             marginBottom: '16px' 
           }}>
             {product.name}
@@ -115,7 +116,7 @@ const ProductDetail = () => {
           
           <p style={{ 
             fontSize: '18px', 
-            color: '#64748b', 
+            color: '#cbd5e1', 
             marginBottom: '24px',
             lineHeight: '1.6'
           }}>
@@ -126,14 +127,14 @@ const ProductDetail = () => {
             <span style={{ 
               fontSize: '36px', 
               fontWeight: '700', 
-              color: '#1e293b' 
+              color: '#ffffff' 
             }}>
               ${product.price}
             </span>
             {product.originalPrice && product.originalPrice > product.price && (
               <span style={{ 
                 fontSize: '20px', 
-                color: '#64748b', 
+                color: '#94a3b8', 
                 textDecoration: 'line-through',
                 marginLeft: '12px'
               }}>
@@ -160,7 +161,7 @@ const ProductDetail = () => {
               display: 'block', 
               fontSize: '16px', 
               fontWeight: '500', 
-              color: '#1e293b',
+              color: '#ffffff',
               marginBottom: '8px'
             }}>
               Quantity:
@@ -173,8 +174,9 @@ const ProductDetail = () => {
                   width: '40px',
                   height: '40px',
                   borderRadius: '8px',
-                  border: '1px solid #e2e8f0',
-                  background: 'white',
+                  border: '1px solid #222',
+                  background: '#000',
+                  color: '#fff',
                   cursor: quantity <= 1 ? 'not-allowed' : 'pointer',
                   display: 'flex',
                   alignItems: 'center',
@@ -200,8 +202,9 @@ const ProductDetail = () => {
                   width: '40px',
                   height: '40px',
                   borderRadius: '8px',
-                  border: '1px solid #e2e8f0',
-                  background: 'white',
+                  border: '1px solid #222',
+                  background: '#000',
+                  color: '#fff',
                   cursor: quantity >= product.stock ? 'not-allowed' : 'pointer',
                   display: 'flex',
                   alignItems: 'center',
@@ -246,21 +249,22 @@ const ProductDetail = () => {
 
           <div style={{ 
             padding: '20px', 
-            background: '#f8fafc', 
+            background: '#0b0b0b', 
             borderRadius: '8px',
-            border: '1px solid #e2e8f0'
+            border: '1px solid #333',
+            color: '#e5e7eb'
           }}>
             <h3 style={{ 
               fontSize: '16px', 
               fontWeight: '600', 
-              color: '#1e293b',
+              color: '#ffffff',
               marginBottom: '12px'
             }}>
               Product Details
             </h3>
-            <div style={{ fontSize: '14px', color: '#64748b', lineHeight: '1.6' }}>
+            <div style={{ fontSize: '14px', color: '#cbd5e1', lineHeight: '1.6' }}>
               <p><strong>Category:</strong> {product.category}</p>
-              <p><strong>Brand:</strong> {product.brand || 'Fight Widom'}</p>
+              <p><strong>Brand:</strong> {product.brand || 'Fight Wisdom'}</p>
               <p><strong>SKU:</strong> {product.sku || 'N/A'}</p>
             </div>
           </div>
@@ -268,11 +272,11 @@ const ProductDetail = () => {
       </div>
 
       {/* Reviews Section */}
-      <div className="card" style={{ padding: '24px' }}>
+      <div className="card" style={{ padding: '24px', background: '#0b0b0b', border: '1px solid #333', color: '#e5e7eb' }}>
         <h2 style={{ 
           fontSize: '24px', 
           fontWeight: '600', 
-          color: '#1e293b',
+          color: '#ffffff',
           marginBottom: '20px'
         }}>
           Customer Reviews
@@ -291,32 +295,33 @@ const ProductDetail = () => {
                   <span style={{ marginRight: '8px' }}>
                     {'⭐'.repeat(review.rating)}
                   </span>
-                  <span style={{ fontSize: '14px', color: '#64748b' }}>
-                    {review.user?.name || 'Anonymous'}
+                  <span style={{ fontSize: '14px', color: '#cbd5e1' }}>
+                    {review.user?.name || review.user?.email || review.userName || 'Anonymous'}
                   </span>
                 </div>
-                <p style={{ color: '#1e293b', margin: 0 }}>
+                <p style={{ color: '#e5e7eb', margin: 0 }}>
                   {review.comment}
                 </p>
               </div>
             ))}
           </div>
         ) : (
-          <p style={{ color: '#64748b', marginBottom: '24px' }}>
+          <p style={{ color: '#cbd5e1', marginBottom: '24px' }}>
             No reviews yet. Be the first to review this product!
           </p>
         )}
 
         <div style={{ 
           padding: '20px', 
-          background: '#f8fafc', 
+          background: '#0b0b0b', 
           borderRadius: '8px',
-          border: '1px solid #e2e8f0'
+          border: '1px solid #333',
+          color: '#e5e7eb'
         }}>
           <h3 style={{ 
             fontSize: '18px', 
             fontWeight: '600', 
-            color: '#1e293b',
+            color: '#ffffff',
             marginBottom: '16px'
           }}>
             Write a Review
@@ -326,7 +331,7 @@ const ProductDetail = () => {
               display: 'block', 
               fontSize: '14px', 
               fontWeight: '500', 
-              color: '#1e293b',
+              color: '#ffffff',
               marginBottom: '8px'
             }}>
               Rating:
@@ -337,7 +342,9 @@ const ProductDetail = () => {
               style={{
                 padding: '8px 12px',
                 borderRadius: '6px',
-                border: '1px solid #e2e8f0',
+                border: '1px solid #333',
+                background: '#111',
+                color: '#e5e7eb',
                 fontSize: '14px'
               }}
             >
@@ -354,7 +361,7 @@ const ProductDetail = () => {
               display: 'block', 
               fontSize: '14px', 
               fontWeight: '500', 
-              color: '#1e293b',
+              color: '#ffffff',
               marginBottom: '8px'
             }}>
               Comment:
@@ -367,7 +374,9 @@ const ProductDetail = () => {
                 width: '100%',
                 padding: '12px',
                 borderRadius: '6px',
-                border: '1px solid #e2e8f0',
+                border: '1px solid #333',
+                background: '#111',
+                color: '#e5e7eb',
                 fontSize: '14px',
                 minHeight: '100px',
                 resize: 'vertical'
@@ -375,15 +384,25 @@ const ProductDetail = () => {
             />
           </div>
           <button 
-            onClick={() => {
+            onClick={async () => {
               if (!rating || !comment.trim()) {
                 alert('Please provide both rating and comment');
                 return;
               }
-              // Submit review logic would go here
-              alert('Review submitted successfully!');
-              setRating(0);
-              setComment('');
+              const token = localStorage.getItem('token');
+              if (!token) {
+                alert('Please login to submit a review');
+                return;
+              }
+              try {
+                const res = await api.post(`/products/${id}/reviews`, { rating, comment });
+                setProduct(res.data);
+                setRating(0);
+                setComment('');
+                alert('Review submitted successfully!');
+              } catch (err) {
+                alert(err?.response?.data?.msg || 'Failed to submit review');
+              }
             }}
             className="btn-primary"
             style={{ padding: '12px 24px' }}
@@ -391,6 +410,7 @@ const ProductDetail = () => {
             Submit Review
           </button>
         </div>
+      </div>
       </div>
     </div>
   );
